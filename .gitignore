@@ -1,0 +1,5 @@
+.gradle
+.idea
+*.iml
+build
+.attach_pid*
