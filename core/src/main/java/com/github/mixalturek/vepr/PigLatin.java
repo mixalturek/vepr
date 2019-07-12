@@ -53,6 +53,7 @@ public class PigLatin {
             }
         }
 
+        // Handle the rest
         if (word.length() > 0) {
             output.append(translateWord(word.toString()));
         }
@@ -67,7 +68,7 @@ public class PigLatin {
      * @return word in pig-latin
      */
     private String translateWord(String word) {
-        // TODO: It should be possible to do the whole transformation in place in char[], but I have already this implementation.
+        // TODO: It should be probably possible to do the whole transformation in place in char[], but I have already this implementation.
         if (word.endsWith("way")) {
             return word;
         } else if (VOWELS.contains(word.charAt(0))) {
@@ -78,19 +79,13 @@ public class PigLatin {
     }
 
     private String translateVowelWord(String word) {
-        // TODO: There is a lot of space for performance optimizations here, but it's good enough for now.
+        // TODO: There is a lot of space for performance optimizations here.
         // Words that start with a vowel have the letters "way" added to the end.
         StringBuilder builder = new StringBuilder(word.length() + 3);
         builder.append(word);
         builder.append("way");
 
-        // Move ' to the correct positions
-        for (int i = 0; i < word.length(); ++i) {
-            if (word.charAt(word.length() - 1 - i) == '\'') {
-                builder.deleteCharAt(builder.length() - 4 - i);
-                builder.insert(builder.length() - i, '\'');
-            }
-        }
+        movePunctuation(builder, 3); // way
 
         // No need to update the case of the characters, it just can't happen here
 
@@ -98,14 +93,14 @@ public class PigLatin {
     }
 
     private String translateConsonantWord(String word) {
-        // TODO: There is a lot of space for performance optimizations here, but it's good enough for now.
+        // TODO: There is a lot of space for performance optimizations here.
         StringBuilder builder = new StringBuilder(word.length() + 2);
         char previous = word.charAt(0);
 
         for (int i = 1; i < word.length(); ++i) {
             char c = word.charAt(i);
 
-            // Continue with the older one to prevent condition based on ' that has no case
+            // Continue with the older one to prevent condition based on ' character that has no case
             if (word.charAt(i - 1) != '\'') {
                 previous = word.charAt(i - 1);
             }
@@ -124,16 +119,19 @@ public class PigLatin {
         }
 
         builder.append("ay");
-
-        // Move ' to the correct positions
-        for (int i = builder.length() - 3; i >= 0; --i) {
-            if (builder.charAt(i) == '\'') {
-                builder.deleteCharAt(i);
-                builder.insert(i + 3, '\'');
-            }
-        }
+        movePunctuation(builder, 3); // ay + first char
 
         return builder.toString();
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void movePunctuation(StringBuilder builder, int offset) {
+        for (int i = builder.length() - offset; i >= 0; --i) {
+            if (builder.charAt(i) == '\'') {
+                builder.deleteCharAt(i);
+                builder.insert(i + offset, '\'');
+            }
+        }
     }
 
     /**
