@@ -99,10 +99,11 @@ public class PigLatin {
 
         for (int i = 1; i < word.length(); ++i) {
             char c = word.charAt(i);
+            char previousCandidate = word.charAt(i - 1);
 
             // Continue with the older one to prevent condition based on ' character that has no case
-            if (word.charAt(i - 1) != '\'') {
-                previous = word.charAt(i - 1);
+            if (previousCandidate != '\'') {
+                previous = previousCandidate;
             }
 
             builder.append(correctCase(c, Character.isUpperCase(previous)));
