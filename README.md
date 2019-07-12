@@ -35,15 +35,7 @@ Usage
 -----
 
 Class `com.github.mixalturek.vepr.VeprPipe` is a *unix pipe* that reads lines from standard input and produces
-their translations to the standard output.
-
-```
-[m@evm vepr]$ ./gradlew clean build
-
-BUILD SUCCESSFUL in 1s
-8 actionable tasks: 8 executed
-[m@evm vepr]$
-```
+their translations to the standard output. Execute `./gradlew clean build` to compile the code.
 
 ```
 [m@evm vepr]$ echo 'Hello, world!' | java -jar vepr/build/libs/vepr.jar
