@@ -1,17 +1,17 @@
 Vepř
 ====
 
-*~ yet another [pig-latin][wikipedia] translation tool*
+*Yet another [pig-latin][wikipedia] translation tool.*
 
 
 Motivation
 ----------
 
-Java task to show coding skills, nothing more...
+A task to show Java coding skills, nothing more...
 
 
-Task requirements
------------------
+Task description
+----------------
 
 Write some Java code that translates a string (word, sentence, or paragraph) into "pig-latin" using the following rules.
 
@@ -29,6 +29,14 @@ Write some Java code that translates a string (word, sentence, or paragraph) int
 - Capitalization must remain in the same place.
     - **Beach** becomes **Eachbay**
     - **McCloud** becomes **CcLoudmay**
+
+
+Usage
+-----
+
+Class `com.github.mixalturek.vepr.Vepr` is a *unix pipe* that reads lines from standard input and produces
+their translations to the standard output.
+
 
 
 [wikipedia]: https://en.wikipedia.org/wiki/Pig_Latin
