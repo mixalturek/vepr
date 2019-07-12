@@ -1,0 +1,13 @@
+apply plugin: "application"
+
+application {
+    mainClassName = "$mainClass"
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": "$mainClass"
+        )
+    }
+}

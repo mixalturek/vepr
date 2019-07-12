@@ -34,18 +34,46 @@ Write some Java code that translates a string (word, sentence, or paragraph) int
 Usage
 -----
 
-Class `com.github.mixalturek.vepr.Vepr` is a *unix pipe* that reads lines from standard input and produces
+Class `com.github.mixalturek.vepr.VeprPipe` is a *unix pipe* that reads lines from standard input and produces
 their translations to the standard output.
 
 ```
 [m@evm vepr]$ ./gradlew clean build
-...
-[m@evm vepr]$ TEXT=`fortune`
-[m@evm vepr]$ echo $TEXT
-There is a 20% chance of tomorrow.
-[m@evm vepr]$ echo $TEXT | java -classpath core/build/libs/core.jar com.github.mixalturek.vepr.Vepr
-Heretay isway away 20% hancecay ofway omorrowtay.
+
+BUILD SUCCESSFUL in 1s
+8 actionable tasks: 8 executed
 [m@evm vepr]$
+```
+
+```
+[m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
+You have an unusual equipment for success.  Be sure to use it properly.
+[m@evm vepr]$ echo "${TEXT}" | java -jar vepr/build/libs/vepr.jar
+Ouyay avehay anway unusualway equipmentway orfay uccesssay.  EBay uresay otay useway itway roperlypay.
+[m@evm vepr]$ 
+```
+
+```
+[m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
+Q:      How many Harvard MBA's does it take to screw in a light bulb?
+A:      Just one.  He grasps it firmly and the universe revolves around him.
+[m@evm vepr]$ echo "${TEXT}" | java -jar vepr/build/libs/vepr.jar
+Qay:    Owhay anymay Arvardhay BASMa'y oesday itway aketay otay crewsay inway away ightlay ulbbay?
+Away:   Ustjay oneway.  EHay raspsgay itway irmlyfay andway hetay universeway evolvesray aroundway imhay.
+[m@evm vepr]$ 
+```
+
+```
+[m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
+A classic is something that everyone wants to have read
+and nobody wants to read.
+                -- Mark Twain, "The Disappearance of Literature"
+[m@evm vepr]$
+[m@evm vepr]$ echo "${TEXT}" | java -jar vepr/build/libs/vepr.jar
+Away lassiccay isway omethingsay hattay everyoneway antsway otay avehay eadray
+andway obodynay antsway otay eadray.
+                -- Arkmay Waintay, "Hetay Isappearanceday ofway Iteraturelay"
+[m@evm vepr]$ 
 ```
 
 

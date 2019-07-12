@@ -4,9 +4,10 @@ buildscript {
     }
 }
 
-allprojects {
-    apply plugin: 'java'
-    apply plugin: 'idea'
+apply plugin: "idea"
+
+subprojects {
+    apply plugin: "java"
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -20,6 +21,8 @@ allprojects {
     }
 
     ext {
+        mainClass = "com.github.mixalturek.vepr.VeprPipe"
+
         apiGuardianVersion = "1.0.0"
         junitJupiterVersion = "5.4.0"
         scalatestVersion = "3.0.5"

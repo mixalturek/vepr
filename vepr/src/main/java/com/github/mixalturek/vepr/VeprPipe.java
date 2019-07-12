@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * Unix pipe that translates a text to pig-latin line by line.
  */
-public class Vepr {
+public class VeprPipe {
     public static void main(String[] args) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8))) {
