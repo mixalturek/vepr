@@ -95,7 +95,7 @@ public class PigLatin {
     private String translateConsonantWord(String word) {
         // TODO: There is a lot of space for performance optimizations here.
         StringBuilder builder = new StringBuilder(word.length() + 2);
-        char previous = word.charAt(0);
+        boolean previousUpperCase = Character.isUpperCase(word.charAt(0));
 
         for (int i = 1; i < word.length(); ++i) {
             char c = word.charAt(i);
@@ -103,13 +103,13 @@ public class PigLatin {
 
             // Continue with the older one to prevent condition based on ' character that has no case
             if (previousCandidate != '\'') {
-                previous = previousCandidate;
+                previousUpperCase = Character.isUpperCase(previousCandidate);
             }
 
-            builder.append(correctCase(c, Character.isUpperCase(previous)));
+            builder.append(correctCase(c, previousUpperCase));
         }
 
-        builder.append(correctCase(word.charAt(0), Character.isUpperCase(previous)));
+        builder.append(correctCase(word.charAt(0), previousUpperCase));
         builder.append("ay");
         movePunctuation(builder, 3); // ay + first char
 
