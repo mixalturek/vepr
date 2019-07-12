@@ -37,6 +37,16 @@ Usage
 Class `com.github.mixalturek.vepr.Vepr` is a *unix pipe* that reads lines from standard input and produces
 their translations to the standard output.
 
+```
+[m@evm vepr]$ ./gradlew clean build
+...
+[m@evm vepr]$ TEXT=`fortune`
+[m@evm vepr]$ echo $TEXT
+There is a 20% chance of tomorrow.
+[m@evm vepr]$ echo $TEXT | java -classpath core/build/libs/core.jar com.github.mixalturek.vepr.Vepr
+Heretay isway away 20% hancecay ofway omorrowtay.
+[m@evm vepr]$
+```
 
 
 [wikipedia]: https://en.wikipedia.org/wiki/Pig_Latin
