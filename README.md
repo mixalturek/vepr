@@ -1,7 +1,7 @@
 Vepř
 ====
 
-*~ yet another `pig-latin` translation tool*
+*~ yet another [pig-latin][wikipedia] translation tool*
 
 
 Motivation
@@ -29,3 +29,6 @@ Write some Java code that translates a string (word, sentence, or paragraph) int
 - Capitalization must remain in the same place.
     - **Beach** becomes **Eachbay**
     - **McCloud** becomes **CcLoudmay**
+
+
+[wikipedia]: https://en.wikipedia.org/wiki/Pig_Latin
