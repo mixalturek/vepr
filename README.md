@@ -46,10 +46,35 @@ BUILD SUCCESSFUL in 1s
 ```
 
 ```
+[m@evm vepr]$ echo 'Hello, world!' | java -jar vepr/build/libs/vepr.jar
+Ellohay, orldway!
+[m@evm vepr]$ 
+```
+
+```
+[m@evm vepr]$ java -jar vepr/build/libs/vepr.jar
+Hi, there!
+Ihay, heretay!
+Bye...
+Yebay...
+[m@evm vepr]$
+```
+
+```
 [m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
-You have an unusual equipment for success.  Be sure to use it properly.
+Long life is in store for you.
+[m@evm vepr]$
 [m@evm vepr]$ echo "${TEXT}" | java -jar vepr/build/libs/vepr.jar
-Ouyay avehay anway unusualway equipmentway orfay uccesssay.  EBay uresay otay useway itway roperlypay.
+Onglay ifelay isway inway toresay orfay ouyay.
+[m@evm vepr]$ 
+```
+
+```
+[m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
+If you can read this, you're too close.
+[m@evm vepr]$
+[m@evm vepr]$ echo "${TEXT}" | java -jar vepr/build/libs/vepr.jar
+Ifway ouyay ancay eadray histay, ourey'ay ootay losecay.
 [m@evm vepr]$ 
 ```
 
@@ -57,23 +82,23 @@ Ouyay avehay anway unusualway equipmentway orfay uccesssay.  EBay uresay otay us
 [m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
 Q:      How many Harvard MBA's does it take to screw in a light bulb?
 A:      Just one.  He grasps it firmly and the universe revolves around him.
+[m@evm vepr]$
 [m@evm vepr]$ echo "${TEXT}" | java -jar vepr/build/libs/vepr.jar
-Qay:    Owhay anymay Arvardhay BASMa'y oesday itway aketay otay crewsay inway away ightlay ulbbay?
-Away:   Ustjay oneway.  EHay raspsgay itway irmlyfay andway hetay universeway evolvesray aroundway imhay.
-[m@evm vepr]$ 
+Qay:    Owhay anymay Arvardhay BASma'y oesday itway aketay otay crewsay inway away ightlay ulbbay?
+Away:   Ustjay oneway.  Ehay raspsgay itway irmlyfay andway hetay universeway evolvesray aroundway imhay.
+[m@evm vepr]$
 ```
 
 ```
 [m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
-A classic is something that everyone wants to have read
-and nobody wants to read.
-                -- Mark Twain, "The Disappearance of Literature"
+[m@evm vepr]$ TEXT="$(fortune)" && echo "${TEXT}"
+The first thing we do, let's kill all the lawyers.
+                -- Wm. Shakespeare, "Henry VI", Part IV
 [m@evm vepr]$
 [m@evm vepr]$ echo "${TEXT}" | java -jar vepr/build/libs/vepr.jar
-Away lassiccay isway omethingsay hattay everyoneway antsway otay avehay eadray
-andway obodynay antsway otay eadray.
-                -- Arkmay Waintay, "Hetay Isappearanceday ofway Iteraturelay"
-[m@evm vepr]$ 
+Hetay irstfay hingtay eway oday, etsla'y illkay allway hetay awyerslay.
+                -- Mway. Hakespearesay, "Enryhay IVay", Artpay IVway
+[m@evm vepr]$
 ```
 
 

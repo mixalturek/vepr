@@ -69,8 +69,16 @@ class PigLatinTest {
                 arguments("4$.", "4$."),
                 arguments("$4.", "$4."),
 
+                arguments("mba's", "basma'y"),
                 arguments("MBA's", "BASma'y"),
+                arguments("MBA's", "BASma'y"),
+                arguments("mba'S", "basmA'y"),
+                arguments("MBA'S", "BASmA'y"),
+
+                arguments("he", "ehay"),
                 arguments("He", "Ehay"),
+                arguments("hE", "eHay"),
+                arguments("HE", "EHay"),
 
                 arguments("Pukak... haf?!", "Ukakpay... afhay?!"),
                 arguments("...  ---  ...", "...  ---  ..."),

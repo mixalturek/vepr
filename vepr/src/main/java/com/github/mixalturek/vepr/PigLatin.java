@@ -5,6 +5,7 @@ import java.util.Set;
 /**
  * Transformation of input in English to an artificial language called "pig-latin".
  */
+// TODO: There is a lot of space for performance optimizations in this class.
 public class PigLatin {
     private static final Set<Character> VOWELS = Set.of('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
 
@@ -19,10 +20,10 @@ public class PigLatin {
 
         State state = State.WORD_START;
 
-        // TODO: This algorithm is also suitable for input to output stream processing, there is no need to has the whole `text` in memory
+        // This algorithm is also suitable for input to output stream processing, there is no need to has the whole `text` in memory
         StringBuilder output = new StringBuilder(text.length() * 2);
 
-        // TODO: Possible optimization using Rust-like string slices, there is no need to copy it outside in general.
+        // Possible optimization using Rust-like string slices, there is no need to copy it outside in general.
         StringBuilder word = new StringBuilder(50);
 
         for (int i = 0; i < text.length(); ++i) {
@@ -44,7 +45,7 @@ public class PigLatin {
                         word.append(c);
                     } else {
                         output.append(translateWord(word.toString()));
-                        // TODO: Hm, no builder.clear() method to reset it?
+                        // Hm, no builder.clear() method to reset it?
                         word = new StringBuilder(50);
                         output.append(c);
                         state = State.WORD_START;
@@ -68,7 +69,7 @@ public class PigLatin {
      * @return word in pig-latin
      */
     private String translateWord(String word) {
-        // TODO: It should be probably possible to do the whole transformation in place in char[], but I have already this implementation.
+        // It should be probably possible to do the whole transformation in place in char[], but I have already this implementation.
         if (word.endsWith("way")) {
             return word;
         } else if (VOWELS.contains(word.charAt(0))) {
@@ -79,40 +80,21 @@ public class PigLatin {
     }
 
     private String translateVowelWord(String word) {
-        // TODO: There is a lot of space for performance optimizations here.
-        // Words that start with a vowel have the letters "way" added to the end.
         StringBuilder builder = new StringBuilder(word.length() + 3);
         builder.append(word);
         builder.append("way");
-
         movePunctuation(builder, 3); // way
-
         // No need to update the case of the characters, it just can't happen here
-
         return builder.toString();
     }
 
     private String translateConsonantWord(String word) {
-        // TODO: There is a lot of space for performance optimizations here.
         StringBuilder builder = new StringBuilder(word.length() + 2);
-        boolean previousUpperCase = Character.isUpperCase(word.charAt(0));
-
-        for (int i = 1; i < word.length(); ++i) {
-            char c = word.charAt(i);
-            char previousCandidate = word.charAt(i - 1);
-
-            // Continue with the older one to prevent condition based on ' character that has no case
-            if (previousCandidate != '\'') {
-                previousUpperCase = Character.isUpperCase(previousCandidate);
-            }
-
-            builder.append(correctCase(c, previousUpperCase));
-        }
-
-        builder.append(correctCase(word.charAt(0), previousUpperCase));
+        builder.append(word.substring(1));
+        builder.append(word.charAt(0));
         builder.append("ay");
         movePunctuation(builder, 3); // ay + first char
-
+        syncCase(builder, word);
         return builder.toString();
     }
 
@@ -126,8 +108,12 @@ public class PigLatin {
         }
     }
 
-    private char correctCase(char ch, boolean upperCase) {
-        return upperCase ? Character.toUpperCase(ch) : Character.toLowerCase(ch);
+    private void syncCase(StringBuilder builder, String word) {
+        for (int i = 0; i < word.length(); ++i) {
+            char ch = builder.charAt(i);
+            char updated = Character.isUpperCase(word.charAt(i)) ? Character.toUpperCase(ch) : Character.toLowerCase(ch);
+            builder.setCharAt(i, updated);
+        }
     }
 
     /**
