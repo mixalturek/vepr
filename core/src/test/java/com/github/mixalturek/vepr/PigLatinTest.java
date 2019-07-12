@@ -41,47 +41,44 @@ class PigLatinTest {
                 arguments("Ca'n't", "Antc'a'y"),
                 arguments("c'a'n't", "ant'c'a'y"),
                 arguments("C'a'n't", "Ant'c'a'y"),
-
-                arguments("end.", "endway."),
-                arguments("this-thing", "histay-hingtay"),
-                arguments("Beach", "Eachbay"),
-                arguments("McCloud", "CcLoudmay"),
-
-                // Multiple hyphens
-                arguments("this-thing-multi", "histay-hingtay-ultimay"),
-
-                // Little longer input.
-                arguments(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "Oremlay ipsumway olorday itsay ametway, onsecteturcay adipiscingway elitway."
-                ),
-
+                arguments("stairwa'y", "tairwaysa'y"),
+                arguments("StaIrwa'y", "TaiRwaysa'y"),
 
                 arguments("w", "way"),
                 arguments("x", "xay"),
                 arguments("W", "Way"),
                 arguments("X", "Xay"),
 
-                // Digits
-                arguments("0123456789", "0123456789"),
+                arguments("end.", "endway."),
+                arguments("this-thing", "histay-hingtay"),
+                arguments("Beach", "Eachbay"),
+                arguments("McCloud", "CcLoudmay"),
 
-                // Punctuation
+                arguments("this-thing-multi", "histay-hingtay-ultimay"),
+
+                arguments(
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "Oremlay ipsumway olorday itsay ametway, onsecteturcay adipiscingway elitway."
+                ),
+
+                arguments("0123456789", "0123456789"),
+                arguments("42s", "42say"),
+                arguments("42 s", "42 say"),
+                arguments("42M", "42May"),
+                arguments("42 M", "42 May"),
+                arguments("4$.", "4$."),
+                arguments("$4.", "$4."),
+
                 arguments("Pukak... haf?!", "Ukakpay... afhay?!"),
                 arguments("...  ---  ...", "...  ---  ..."),
                 arguments(" ", " "),
                 arguments("'", "'"),
                 arguments("     ", "     "),
 
-                // "Broken" input, multiple line should be multiple calls, only space is the delimiter.
                 arguments("multiline\nmultiline", "ultilinemay\nultilinemay"),
 
-                arguments("4$.", "4$."),
-                arguments("$4.", "$4."),
-
-                // Corner cases
-                arguments("stairwa'y", "tairwaysa'y"),
                 arguments(".pivo", ".ivopay"),
-                arguments(".p.i.v.o.", ".pay.iway.vay.oway.") // TODO: Hm?
+                arguments(".p.i.v.o.", ".pay.iway.vay.oway.") // TODO: Punctuation or multiple words?
         );
     }
 
@@ -89,11 +86,6 @@ class PigLatinTest {
     @MethodSource("translateLineProvider")
     void translate(String input, String expected) {
         assertEquals(expected, new PigLatin().translate(input), input);
-    }
-
-    @Test
-    void translateSpec() {
-        assertEquals("appletw'a'y", new PigLatin().translate("appl'e't"), "appl'e't");
     }
 
     @Test
