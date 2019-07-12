@@ -105,19 +105,10 @@ public class PigLatin {
                 previous = word.charAt(i - 1);
             }
 
-            if (Character.isUpperCase(previous)) {
-                builder.append(Character.toUpperCase(c));
-            } else {
-                builder.append(Character.toLowerCase(c));
-            }
+            builder.append(correctCase(c, Character.isUpperCase(previous)));
         }
 
-        if (Character.isUpperCase(previous)) {
-            builder.append(Character.toUpperCase(word.charAt(0)));
-        } else {
-            builder.append(Character.toLowerCase(word.charAt(0)));
-        }
-
+        builder.append(correctCase(word.charAt(0), Character.isUpperCase(previous)));
         builder.append("ay");
         movePunctuation(builder, 3); // ay + first char
 
@@ -132,6 +123,10 @@ public class PigLatin {
                 builder.insert(i + offset, '\'');
             }
         }
+    }
+
+    private char correctCase(char ch, boolean upperCase) {
+        return upperCase ? Character.toUpperCase(ch) : Character.toLowerCase(ch);
     }
 
     /**
